@@ -1,6 +1,16 @@
+<!DOCTYPE html>
 {% load static %}
-<link rel="stylesheet" href="{% static 'base.css' %}">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Список дел{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'base.css' %}">
+</head>
 <body>
+  <header>
+    <a href="{% url 'user:logout' %}" class="nav-link">Выйти из профиля</a>
+  </header>
+  <main>
     <h1>10 последних созданных задач</h1>
     <table>
         <thead>
@@ -26,4 +36,6 @@
         {% endfor %}
         </tbody>
     </table>
+  </main>
 </body>
+</html>

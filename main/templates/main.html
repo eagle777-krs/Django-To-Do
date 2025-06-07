@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Главная страница</title>
+    <link rel="stylesheet" href="{% static 'base.css' %}">
+</head>
+<body>
+  <header>
+    <a href="{% url 'user:login' %}" class="nav-link">Вход</a>
+    <a href="{% url 'user:register' %}" class="nav-link">Регистрация</a>
+  </header>
+  <main>
+    <h1 class="intro-p">Добро пожаловать в To-do приложение</h1>
+    <p class="intro-description">To-Do список — это минималистичное приложение для записи задач.
+    Пользователь может добавлять новые задачи и видеть список текущих.
+    Всё просто, ничего лишнего.</p>
+  </main>
+</body>
+</html>

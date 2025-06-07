@@ -1,0 +1,12 @@
+{% extends 'base-login.html' %}
+
+{% block title %}Вход{% endblock %}
+
+{% block content %}
+<h2>Вход в систему</h2>
+<form action="{% url 'user:login' %}" method="POST" class="login-reg-form">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Войти</button>
+</form>
+{% endblock %}
