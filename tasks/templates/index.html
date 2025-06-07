@@ -1,0 +1,29 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'base.css' %}">
+<body>
+    <h1>10 последних созданных задач</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Название</th>
+                <th>Описание</th>
+                <th>Дата создания</th>
+                <th>Дедлайн</th>
+                <th>Категория</th>
+                <th>Важность</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for task in tasks %}
+            <tr>
+                <td><p>{{ task.name }} </p></td>
+                <td><p>{{ task.description }} </p></td>
+                <td><p>{{ task.created_at }} </p></td>
+                <td><p>{{ task.deadline }} </p></td>
+                <td><p>{{ task.category.name }} </p></td>
+                <td><p>{{ task.category.priority }} </p></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</body>
