@@ -77,3 +77,119 @@ button[type="submit"] {
 button[type="submit"]:hover {
     background-color: #555;
 }
+
+.curr-task-description {
+}
+
+.underbuttons {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.underbuttons a {
+  display: inline-block;
+  background-color: #f2f2f2;
+  color: #333;
+  padding: 8px 14px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+}
+
+.underbuttons a:hover {
+  background-color: #e0e0e0;
+}
+
+.form-wrapper {
+  display: flex;
+  justify-content: center;     /* Горизонтально по центру */
+  align-items: center;         /* Вертикально по центру (если нужно) */
+  min-height: 100vh;           /* На всю высоту экрана */
+}
+
+.task-form {
+  background-color: #ffffff;   /* Светлый фон формы */
+  color: #333333;              /* Тёмный текст */
+  padding: 30px 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 500px;
+  box-sizing: border-box;
+}
+
+.task-form p {
+  margin-bottom: 15px;
+}
+
+.task-form input,
+.task-form textarea,
+.task-form select {
+  width: 100%;
+  padding: 8px 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
+.task-form button {
+  margin-top: 10px;
+  padding: 10px 16px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.task-form button:hover {
+  background-color: #388e3c;
+}
+
+.name-link {
+    color: #FFFFFF;
+}
+
+.name-link:hover {
+    color: #007BFF;
+}
+
+h2 {
+    color: #000;
+    }
+
+.cancel-button {
+  display: block;
+  margin: 10px auto 0;
+  color: #333;
+  font-weight: bold;
+  font-size: 15px;
+  text-align: center;
+}
+
+.cancel-button: hover {
+    color: #007BFF;
+}
+
+.btn-add {
+  display: block;
+  width: fit-content;
+  margin: 0 auto 20px auto;
+  background-color: #4caf50;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.2s ease;
+}
+
+.btn-add:hover {
+  background-color: #388e3c;
+}

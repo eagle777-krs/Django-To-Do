@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}Create Task{% endblock %}
+{% block content %}
+<div class="form-wrapper">
+  <form method="post" class="task-form">
+    {% csrf_token %}
+    {{ form }}
+    <button type="submit">Сохранить</button>
+  </form>
+</div>
+<div class="underbuttons">
+    <a href="{% url 'tasks:index' %}">Назад к задачам</a>
+</div>
+{% endblock %}

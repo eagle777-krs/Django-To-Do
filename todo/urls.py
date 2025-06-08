@@ -23,3 +23,4 @@ urlpatterns = [
     path('tasks/', include('tasks.urls', namespace='tasks')),
     path('user/', include('user.urls', namespace='user'))
 ]
+

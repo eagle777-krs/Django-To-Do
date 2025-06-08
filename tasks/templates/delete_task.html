@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}Are you sure?{% endblock %}
+{% block content %}
+<div class="form-wrapper">
+    <form method="post" class="task-form">
+        <h2>Вы уверены, что хотите удалить задачу?</h2>
+        {% csrf_token %}
+        <button type="submit">Удалить</button>
+        <a href="{% url 'tasks:index' %}" class="cancel-button">Отмена</a>
+    </form>
+</div>
+{% endblock %}

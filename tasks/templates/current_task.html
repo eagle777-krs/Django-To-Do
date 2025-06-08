@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}Task{% endblock %}
+{% block content %}
+<div class="curr-task-description">
+    <p>{{ task.name }}</p>
+    <p>{{ task.description }}</p>
+    <p>{{ task.created_at }}</p>
+    <p>{{ task.deadline }}</p>
+    <p>{{ task.category }}</p>
+    <p>{{ task.status }}</p>
+</div>
+<div class="underbuttons">
+    <a href="{% url 'tasks:edit_task' task.id %}">Изменить задачу</a>
+    <a href="{% url 'tasks:delete_task' task.id %}">Удалить задачу</a>
+    <a href="{% url 'tasks:index' %}">Назад</a>
+</div>
+{% endblock %}

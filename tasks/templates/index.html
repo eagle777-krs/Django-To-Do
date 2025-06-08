@@ -1,17 +1,9 @@
-<!DOCTYPE html>
-{% load static %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{% block title %}Список дел{% endblock %}</title>
-    <link rel="stylesheet" href="{% static 'base.css' %}">
-</head>
-<body>
-  <header>
-    <a href="{% url 'user:logout' %}" class="nav-link">Выйти из профиля</a>
-  </header>
-  <main>
-    <h1>10 последних созданных задач</h1>
+{% extends 'base.html' %}
+{% block title %}Задачи{% endblock %}
+{% block content %}
+    <h1>10 срочных задач</h1>
+    <a href="{% url 'tasks:add' %}" class="btn-add">+ Добавить задачу</a>
+    <p> </p>
     <table>
         <thead>
             <tr>
@@ -21,21 +13,21 @@
                 <th>Дедлайн</th>
                 <th>Категория</th>
                 <th>Важность</th>
+                <th>Статус</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody class="color-body-status">
         {% for task in tasks %}
             <tr>
-                <td><p>{{ task.name }} </p></td>
-                <td><p>{{ task.description }} </p></td>
-                <td><p>{{ task.created_at }} </p></td>
-                <td><p>{{ task.deadline }} </p></td>
-                <td><p>{{ task.category.name }} </p></td>
-                <td><p>{{ task.category.priority }} </p></td>
+                <td><p><a href="{% url 'tasks:task' task.id %}" class="name-link">{{ task.name }}</a></p></td>
+                <td><p>{{ task.description }}</p></td>
+                <td><p>{{ task.created_at }}</p></td>
+                <td><p>{{ task.deadline }}</p></td>
+                <td><p>{{ task.category.name }}</p></td>
+                <td><p>{{ task.category.priority }}</p></td>
+                <td><p>{{ task.status }}</p></td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-  </main>
-</body>
-</html>
+{% endblock %}

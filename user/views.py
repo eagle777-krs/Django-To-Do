@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from .forms import RegisterForm, LoginForm
 from django.views import View
 from django.urls import reverse
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, login as auth_login, logout
 
 
 class RegisterView(View):
@@ -16,7 +16,7 @@ class RegisterView(View):
         form = RegisterForm(request.POST)
         if form.is_valid():
             user = form.save()
-            login(request, user)
+            auth_login(request, user)
             return redirect(reverse('tasks:index'))
         else:
             context = {'form':form}
@@ -36,6 +36,7 @@ class LoginView(View):
             password = form.cleaned_data['password']
             user = authenticate(request, username=username, password=password)# проверка пользователя в БД
             if user is not None:
+                auth_login(request, user)
                 return redirect(reverse('tasks:index'))
             else:
                 form.add_error(None, 'Неверный логин или пароль')#ошибка при неверной авторизации
