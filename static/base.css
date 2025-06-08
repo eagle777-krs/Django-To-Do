@@ -193,3 +193,20 @@ h2 {
 .btn-add:hover {
   background-color: #388e3c;
 }
+
+.btn-history {
+  display: block;
+  width: fit-content;
+  margin: 0 auto 20px auto;
+  background-color: #000;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.2s ease;
+}
+
+.btn-history:hover {
+  background-color: #737873;
+}

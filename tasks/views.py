@@ -66,3 +66,9 @@ def current_task(request, id):
     context = {'task':task}
     return render(request, 'current_task.html', context)
 
+def history(request):
+    tasks = (Task.objects.order_by('deadline')
+             .filter(user_id=request.user.id, status=Status.DONE.value).all())
+    context = {'tasks':tasks}
+    return render(request, 'history.html', context)
+

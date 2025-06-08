@@ -1,9 +1,7 @@
 {% extends 'base.html' %}
-{% block title %}Задачи{% endblock %}
+{% block title %}История{% endblock %}
 {% block content %}
-    <h1>10 срочных задач</h1>
-    <a href="{% url 'tasks:add' %}" class="btn-add">+ Добавить задачу</a>
-    <p> </p>
+    <h1>История выполненных задач</h1>
     <table>
         <thead>
             <tr>
@@ -28,7 +26,7 @@
                 <td><p>{{ task.status }}</p></td>
             </tr>
         {% endfor %}
-        <a href="{% url 'tasks:history' %}" class="btn-history">История завершённых задач</a>
+        <a href="{% url 'tasks:index' %}" class="btn-history">Назад</a>
         </tbody>
     </table>
 {% endblock %}
