@@ -7,7 +7,7 @@
     <p>{{ task.created_at }}</p>
     <p>{{ task.deadline }}</p>
     <p>{{ task.category }}</p>
-    <p>{{ task.status }}</p>
+    <p>{% if task.status %}Выполнено{% else %}Не выполнено{% endif %}</p>
 </div>
 <div class="underbuttons">
     <a href="{% url 'tasks:edit_task' task.id %}">Изменить задачу</a>

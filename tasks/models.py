@@ -8,10 +8,6 @@ class Priority(models.TextChoices):
     MEDIUM = 'Средний', 'Средний'
     HIGH = 'Высокий', 'Высокий'
 
-class Status(models.TextChoices):
-    UNDONE = 'Не выполнено', 'Не выполнено'
-    DONE = 'Выполнено', 'Выполнено'
-
 class Category(models.Model):
     name = models.CharField(max_length=100, unique=True, null=False, blank=False)
     priority = models.CharField(max_length=10, choices=Priority.choices, default=Priority.LOW)
@@ -26,7 +22,11 @@ class Task(models.Model):
     deadline = models.DateField(default=None)
     category = models.ForeignKey(Category, on_delete=CASCADE, related_name='tasks')
     user = models.ForeignKey(User, on_delete=CASCADE, related_name='tasks')
-    status = models.CharField(max_length=20, choices=Status.choices, default=Status.UNDONE)
+    status = models.BooleanField(default=False)
+
+    class Meta:
+        ordering = ['status','deadline']
+
 
     def __str__(self):
         return self.name

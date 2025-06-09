@@ -194,19 +194,43 @@ h2 {
   background-color: #388e3c;
 }
 
-.btn-history {
-  display: block;
-  width: fit-content;
-  margin: 0 auto 20px auto;
-  background-color: #000;
+.button-update {
+
+  background-color: #4caf50;
   color: white;
+  border: none;
   padding: 8px 16px;
-  border-radius: 6px;
-  text-decoration: none;
+  border-radius: 20px;
   font-weight: bold;
-  transition: background-color 0.2s ease;
+  font-size: 16px;
+  cursor: pointer;
+  width: auto;
+  display: inline-block;
+  margin: 10px auto;
+  text-align: center;
 }
 
-.btn-history:hover {
-  background-color: #737873;
+.button-update:hover {
+  background-color: #45a049;
 }
+
+.filter-butt {
+    background-color: #ddd;
+    color: black;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    width: auto;
+    display: inline-block;
+    margin: 10px auto;
+    text-align: center;
+    text-decoration: none;
+    }
+
+.filter-butt:hover {
+  background-color: #45a049;
+}
+

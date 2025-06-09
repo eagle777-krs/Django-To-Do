@@ -1,9 +1,17 @@
 {% extends 'base.html' %}
 {% block title %}Задачи{% endblock %}
 {% block content %}
+<form method='POST' action="{% url 'tasks:updated_done_tasks' %}">
+    {% csrf_token %}
     <h1>10 срочных задач</h1>
     <a href="{% url 'tasks:add' %}" class="btn-add">+ Добавить задачу</a>
     <p> </p>
+    <div style="margin-bottom: 20px; text-align: center;">
+        <a href="{% url 'tasks:index' %}?filter=all" class="filter-butt">Все</a> |
+        <a href="{% url 'tasks:index' %}?filter=done" class="filter-butt">Выполненные</a> |
+        <a href="{% url 'tasks:index' %}?filter=undone" class="filter-butt">Невыполненные </a>
+
+    </div>
     <table>
         <thead>
             <tr>
@@ -13,7 +21,7 @@
                 <th>Дедлайн</th>
                 <th>Категория</th>
                 <th>Важность</th>
-                <th>Статус</th>
+                <th>Выполнено?</th>
             </tr>
         </thead>
         <tbody class="color-body-status">
@@ -25,10 +33,12 @@
                 <td><p>{{ task.deadline }}</p></td>
                 <td><p>{{ task.category.name }}</p></td>
                 <td><p>{{ task.category.priority }}</p></td>
-                <td><p>{{ task.status }}</p></td>
+                <td><input type="checkbox" name="status_{{ task.id }}"
+                           {% if task.status %}checked{% endif %}></td>
             </tr>
         {% endfor %}
-        <a href="{% url 'tasks:history' %}" class="btn-history">История завершённых задач</a>
         </tbody>
     </table>
+    <button type="submit" class="button-update">Обновить</button>
+</form>
 {% endblock %}
