@@ -1,15 +1,21 @@
 {% extends 'base.html' %}
 {% block title %}Задачи{% endblock %}
 {% block content %}
-<form method='POST' action="{% url 'tasks:updated_done_tasks' %}">
-    {% csrf_token %}
     <h1>10 срочных задач</h1>
+    <p>После выполнения задачи обязательно обновите список внизу страницы!</p>
     <a href="{% url 'tasks:add' %}" class="btn-add">+ Добавить задачу</a>
     <p> </p>
+    <form method="get" action="?filter={{ filter }}" class="search-form">
+      <label for="search-input">Поиск</label>
+      <input id="search-input" type="text" name="search_value" value="{{ query }}" placeholder="Введите запрос...">
+      <button type="submit">Найти</button>
+    </form>
+    <form method='POST' action="{% url 'tasks:updated_done_tasks' %}">
+    {% csrf_token %}
     <div style="margin-bottom: 20px; text-align: center;">
-        <a href="{% url 'tasks:index' %}?filter=all" class="filter-butt">Все</a> |
-        <a href="{% url 'tasks:index' %}?filter=done" class="filter-butt">Выполненные</a> |
-        <a href="{% url 'tasks:index' %}?filter=undone" class="filter-butt">Невыполненные </a>
+        <a href="{% url 'tasks:index' %}?filter=all&search_value={{ query }}" class="filter-butt">Все</a> |
+        <a href="{% url 'tasks:index' %}?filter=done&search_value={{ query }}" class="filter-butt">Выполненные</a> |
+        <a href="{% url 'tasks:index' %}?filter=undone&search_value={{ query }}" class="filter-butt">Невыполненные </a>
 
     </div>
     <table>
@@ -41,4 +47,15 @@
     </table>
     <button type="submit" class="button-update">Обновить</button>
 </form>
+<div class="paginator">
+    {% if tasks.has_previous %}
+        <a href="?page={{ tasks.previous_page_number }}&search_value={{ query }}" class="filter-butt">Назад</a>
+    {% endif %}
+
+    <div style="color:white" class="page-num">Страница {{ tasks.number }} из {{ tasks.paginator.num_pages }}</div>
+
+    {% if tasks.has_next %}
+        <a href="?page={{ tasks.next_page_number }}&search_value={{ query }}" class="filter-butt">Вперёд</a>
+    {% endif %}
+</div>
 {% endblock %}

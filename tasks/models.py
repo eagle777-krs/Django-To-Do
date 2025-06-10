@@ -5,12 +5,12 @@ from django.contrib.auth.models import User
 
 class Priority(models.TextChoices):
     LOW = 'Низкий', 'Низкий'
-    MEDIUM = 'Средний', 'Средний'
+    MEDIUM = 'Медиум (средний)', 'Медиум (средний)'
     HIGH = 'Высокий', 'Высокий'
 
 class Category(models.Model):
     name = models.CharField(max_length=100, unique=True, null=False, blank=False)
-    priority = models.CharField(max_length=10, choices=Priority.choices, default=Priority.LOW)
+    priority = models.CharField(max_length=20, choices=Priority.choices, default=Priority.LOW)
 
     def __str__(self):
         return self.name
@@ -25,7 +25,7 @@ class Task(models.Model):
     status = models.BooleanField(default=False)
 
     class Meta:
-        ordering = ['status','deadline']
+        ordering = ['status','deadline', '-category']
 
 
     def __str__(self):

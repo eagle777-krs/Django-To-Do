@@ -6,6 +6,9 @@ from .forms import TaskAddForm, TaskEditForm
 from django.views.decorators.http import require_POST
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.paginator import Paginator
+from django.contrib.postgres.search import SearchVector, SearchQuery
+
 
 @login_required
 def index(request):
@@ -16,7 +19,18 @@ def index(request):
         tasks = Task.objects.filter(user=request.user, status=False)
     else:
         tasks = Task.objects.filter(user=request.user)
-    context = {'tasks':tasks, 'filter':filter_tasks}
+
+    query = request.GET.get('search_value', '')
+    if query:
+        vector = SearchVector('name', 'description')
+        search_query = SearchQuery(query)
+        tasks = tasks.annotate(search=vector).filter(search=search_query)
+
+    paginator = Paginator(tasks, 8)
+    page_number = request.GET.get('page', 1)
+    tasks = paginator.get_page(int(page_number))
+
+    context = {'tasks':tasks, 'filter':filter_tasks, 'query':query}
     return render(
         request,
         'index.html',
@@ -83,5 +97,4 @@ def updated_done_tasks(request):
         task.status = True if checkbox_value else False
         task.save()
     return redirect(reverse('tasks:index'))
-
 
