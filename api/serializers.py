@@ -5,7 +5,7 @@ class TaskSerializer(serializers.Serializer):
     name = serializers.CharField(max_length=200)
     created_at = serializers.DateField()
     deadline = serializers.DateField()
-    category = serializers.CharField(source='category.field', max_length=100)
+    category = serializers.CharField(source='category.name', max_length=100)
     username = serializers.CharField(source='user.username', max_length=100)
 
 class UPDTaskSerializer(serializers.Serializer):

@@ -1,8 +1,6 @@
-from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import status
-from yaml import serialize
 
 from tasks.models import Task
 from .serializers import TaskSerializer, UPDTaskSerializer
@@ -13,8 +11,8 @@ class GetTaskInfoView(APIView):
 
         queryset = Task.objects.all()
 
-        serializer_for_queryset = TaskSerializer(instance=queryset, many=True)
-        return Response(serializer_for_queryset.data)
+        serializer = TaskSerializer(instance=queryset, many=True)
+        return Response(serializer.data)
 
 # В отличие от файла serializer_example_2.py,
 # где мы явно прописывали json-рендер и вызывали у него метод render, в коде контроллера ничего такого нет.
