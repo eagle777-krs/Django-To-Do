@@ -1,12 +1,12 @@
 from rest_framework import serializers
 from tasks.models import Task, Category
 
-class TaskSerializer(serializers.Serializer):
+class TaskSerializer(serializers.ModelSerializer):
     class Meta:
         model = Task
         exclude = ('category', 'user', 'status')
 
-class UPDTaskSerializer(serializers.Serializer):
+class UPDTaskSerializer(serializers.ModelSerializer):
     category = serializers.ReadOnlyField(source='Category.name')
     c =serializers.ReadOnlyField(source='Category.priority')
     class Meta:
